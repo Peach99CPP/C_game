@@ -81,27 +81,31 @@ void target_display(void)
     printf_move(1, target_position);
     printf("+");
 }
+int iskilled(void)
+{
+    if (y == target_position && flag)
+    {
+        target_position = rand() % 30;
+        scores++;
+        flag = 0;
+        return 1;
+    }
+    return 0;
+}
 int main()
 {
     printf("input the times of the game\n");
     scanf("%d", &times); //开火的次数
-    //童晶老师的飞机游戏代码
     while (times)
     {
         system("cls");
         target_display();
         display_mode();
         dispaly_();
-        if (y == target_position && flag)
-        {
-            target_position = rand() % 30;
-            scores++;
-            flag = 0;
+        if (iskilled())
             continue;
-        }
         move_mode();
     }
-
     p_lock;
     return 0;
 }
