@@ -1,7 +1,10 @@
+#include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #define p_lock getchar()
-int x = 10, y = 10;
+int x = 10, y = 10, target_position = 30, times, scores;
+char input_mode;
+int isFire, flag;
 void printf_move(int mode, int movement)
 {
     if (mode == 0) //x
@@ -17,37 +20,88 @@ void printf_move(int mode, int movement)
 }
 void move_mode(void)
 {
-    scanf("%c", &input_mode);
+    // scanf("%c", &input_mode);
+    input_mode = getch();
     switch (input_mode)
     {
     case 's':
-        x--;
+        x++;
         break;
     case 'a':
         y--;
         break;
     case 'w':
-        x++;
+        x--;
         break;
     case 'd':
         y++;
         break;
+    case ' ':
+        isFire = 1;
+        break;
+    default:
+        return;
     }
+    //限幅，避免坐标越界
     x <= 0 ? x = 0 : x;
     y <= 0 ? y = 0 : y;
 }
-int main()
+void dispaly_(void)
 {
-    //童晶老师的飞机游戏代码
-    char input_mode;
-    while (1)
+    printf("*\n");
+    printf_move(1, y - 2);
+    printf("*****\n");
+    printf_move(1, y - 1);
+    printf("***\n");
+}
+void display_mode(void)
+{
+    if (!isFire)
     {
-        system("cls");
         printf_move(0, x);
         printf_move(1, y);
-        printf("  **  \n");
+        flag = 0;
+    }
+    else
+    {
+        printf("\n");
+        for (int i = 0; i < x - 1; ++i)
+        {
+            printf_move(1, y);
+            printf("|\n");
+        }
+        isFire = 0;
+        flag = 1;
+        printf_move(1, y);
+        times--;
+    }
+}
+void target_display(void)
+{
+    printf_move(1, target_position);
+    printf("+");
+}
+int main()
+{
+    printf("input the times of the game\n");
+    scanf("%d", &times); //开火的次数
+    //童晶老师的飞机游戏代码
+    while (times)
+    {
+        system("cls");
+        target_display();
+        display_mode();
+        dispaly_();
+        if (y == target_position && flag)
+        {
+            target_position = rand() % 30;
+            scores++;
+            flag = 0;
+            continue;
+        }
         move_mode();
     }
+
     p_lock;
     return 0;
 }
