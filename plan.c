@@ -102,10 +102,11 @@ int main()
         target_display();
         display_mode();
         dispaly_();
-        if (iskilled())
+        if (iskilled())  {scores++;
             continue;
+        }
         move_mode();
     }
-    p_lock;
+    printf("game over\n scores=%d", scores);
     return 0;
 }
