@@ -1,11 +1,11 @@
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define p_lock getchar()
+#include <time.h>
 int x = 10, y = 10, target_position = 30, times, scores;
 char input_mode;
 int isFire, flag;
-void printf_move(int mode, int movement)
+void printf_move(int mode, int movement) //通过printf实现绘制坐标
 {
     if (mode == 0) //x
     {
@@ -18,7 +18,7 @@ void printf_move(int mode, int movement)
             printf(" ");
     }
 }
-void move_mode(void)
+void move_mode(void) //通过按键输入检测进行动作反馈
 {
     // scanf("%c", &input_mode);
     input_mode = getch();
@@ -46,7 +46,7 @@ void move_mode(void)
     x <= 0 ? x = 0 : x;
     y <= 0 ? y = 0 : y;
 }
-void dispaly_(void)
+void dispaly_(void) //显示飞机
 {
     printf("*\n");
     printf_move(1, y - 2);
@@ -54,7 +54,7 @@ void dispaly_(void)
     printf_move(1, y - 1);
     printf("***\n");
 }
-void display_mode(void)
+void display_mode(void) //显示子弹（如果有开火）
 {
     if (!isFire)
     {
@@ -76,12 +76,12 @@ void display_mode(void)
         times--;
     }
 }
-void target_display(void)
+void target_display(void) //显示击打的目标
 {
     printf_move(1, target_position);
     printf("+");
 }
-int iskilled(void)
+int iskilled(void) //判断是否击中(坐标重叠&&开火)
 {
     if (y == target_position && flag)
     {
@@ -92,8 +92,16 @@ int iskilled(void)
     }
     return 0;
 }
+void game_over(void)
+{
+    system("cls");
+    printf_move(0, 5);
+    printf_move(1, 24);
+    printf("game over\n\t\t\tscores=%d\n\a", scores);
+}
 int main()
 {
+    srand((unsigned)time(NULL)); //随机数种子
     printf("input the times of the game\n");
     scanf("%d", &times); //开火的次数
     while (times)
@@ -102,11 +110,10 @@ int main()
         target_display();
         display_mode();
         dispaly_();
-        if (iskilled())  {scores++;
+        if (iskilled())
             continue;
-        }
         move_mode();
     }
-    printf("game over\n scores=%d", scores);
+    game_over();
     return 0;
 }
