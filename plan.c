@@ -92,16 +92,19 @@ int iskilled(void) //判断是否击中(坐标重叠&&开火)
     }
     return 0;
 }
-void game_over(void)
+void game_over(void)//封装游戏函数
 {
     system("cls");
     printf_move(0, 5);
     printf_move(1, 24);
+    printf_move(0, 1);
     printf("game over\n\t\t\tscores=%d\n\a", scores);
 }
-int main()
+void gaming(void)
 {
     srand((unsigned)time(NULL)); //随机数种子
+    x = rand() % 10 + 2;
+    y = rand() % 20 + 3;
     printf("input the times of the game\n");
     scanf("%d", &times); //开火的次数
     while (times)
@@ -114,6 +117,10 @@ int main()
             continue;
         move_mode();
     }
+}
+int main()
+{
+    gaming();
     game_over();
     return 0;
 }
