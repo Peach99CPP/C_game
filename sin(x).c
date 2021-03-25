@@ -16,15 +16,14 @@ int main()
 
     float x, result = 0;
     int factor = -1;
-    printf("input angle_x=?\n\t");//输入的是以角度为单位
+    printf("input angle_x=?\n\t"); //输入的是以角度为单位
     scanf("x=%f", &x);
-    x *= PI/180;
+    x *= PI / 180;
     for (int i = 1; i <= 1001; i += 2)
     {
         factor = -factor;
         result += factor * pow(x, i) / jiecheng(i);
     }
-    printf("\tresult==\t%.3f\n", result);//保留3位小数
-
+    printf("\tresult==\t%.3f\n", result); //保留3位小数
     return 0;
 }
