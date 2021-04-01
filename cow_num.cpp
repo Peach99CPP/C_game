@@ -4,8 +4,8 @@ using namespace std;
 
 int main()
 {
-    int temp_num;
-    cin >> temp_num;
-    printf("%#o %d %#x\n",temp_num,temp_num,temp_num);//利用格式化输出进行进制转换
+    int a,b,c;
+    cin >> a >> b >> c;
+    cout << b << endl;
     return 0;
 }
