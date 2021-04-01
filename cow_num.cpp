@@ -4,8 +4,8 @@ using namespace std;
 
 int main()
 {
-    float f, c;
-    cin >> f;
-    cout << "c="<<fixed << setprecision(2) << 5 * (f - 32) / 9 << endl;
+    int temp_num;
+    cin >> temp_num;
+    printf("%#o %d %#x\n",temp_num,temp_num,temp_num);//利用格式化输出进行进制转换
     return 0;
 }
