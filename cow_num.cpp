@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-//Ñ°ÕÒÒò×Ó
 
 int main()
 {
-    int w, h;
-    cin >> w >> h;
-    printf("C:%d\nS:%d", 2 * (w + h), w * h);
+    float r;
+    cin >> r;
+    r *= r;
+    printf("%.2f", r * 3.14159);
     return 0;
 }
