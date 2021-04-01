@@ -4,11 +4,8 @@ using namespace std;
 
 int main()
 {
-    string nation="China";
-    for (int i = 0;i<nation.length();++i)
-    {
-        nation[i] += 4;
-    }
-    cout << nation << endl;
+    float f, c;
+    cin >> f;
+    cout << "c="<<fixed << setprecision(2) << 5 * (f - 32) / 9 << endl;
     return 0;
 }
