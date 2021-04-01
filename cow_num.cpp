@@ -3,9 +3,8 @@ using namespace std;
 
 int main()
 {
-    float r;
-    cin >> r;
-    r *= r;
-    printf("%.2f", r * 3.14159);
+    float  mins;
+    cin >> mins;
+    printf("%.2f", 50 + 0.4 * mins);
     return 0;
 }
